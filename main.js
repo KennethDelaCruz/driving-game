@@ -1,22 +1,28 @@
+/* global data */
 var car = document.querySelector('.car');
-var position = dataset["carPosition"];
+var $rotationMultiply = 0;
 
+function turn(event) {
+  var degrees = 90;
 
+  if (event.key === 'ArrowRight') {
+    data.carPosition++;
+    $rotationMultiply++;
+    degrees = 90 * $rotationMultiply;
+    car.style.transform = 'rotate(' + degrees + 'deg)';
+    if (data.carPosition === 4) {
+      data.carPosition = 0;
+    }
+  } else if (event.key === 'ArrowLeft') {
+    data.carPosition--;
+    $rotationMultiply--;
+    degrees = 90 * $rotationMultiply;
+    car.style.transform = 'rotate(' + degrees + 'deg)';
+    if (data.carPosition === -1) {
+      data.carPosition = 3;
+    }
+  }
 
- function turn(event) {
-   console.log(event.key);
-   if (event.key === 'ArrowRight') {
-     position++;
-     if (position === 5) {
-       position = 1;
-     }
-   } else if (event.key === 'ArrowLeft') {
-     position--
-     if (position === 0){
-       position = 4;
-     }
-   }
-   console.log(data.carPosition);
- }
+}
 
- window.addEventListener('keydown', turn)
+window.addEventListener('keydown', turn);
